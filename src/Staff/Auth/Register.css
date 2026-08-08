@@ -1,0 +1,649 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&display=swap');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.sqcc-root {
+  font-family: 'Public Sans', sans-serif;
+  background: #f9f9ff;
+  color: #111c2d;
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 16px;
+}
+
+/* Header */
+
+.sqcc-header {
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.sqcc-logo {
+  width: 64px;
+  height: 64px;
+  border-radius: 9999px;
+
+  background: #004900;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #fff;
+  font-size: 36px;
+
+  box-shadow: 0 8px 16px rgba(0, 73, 0, 0.25);
+
+  margin: 0 auto 16px;
+}
+
+.sqcc-brand-title {
+  font-size: 32px;
+  line-height: 40px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+
+  color: #004900;
+}
+
+.sqcc-brand-sub {
+  font-size: 16px;
+  line-height: 24px;
+
+  color: #404a3b;
+
+  margin-top: 8px;
+
+  max-width: 520px;
+
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+/* Card */
+
+.sqcc-card {
+  width: 100%;
+  max-width: 900px;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  border-radius: 12px;
+
+  overflow: hidden;
+
+  background: #fff;
+
+  border: 1px solid #bfcab7;
+
+  box-shadow:
+    0 12px 24px rgba(0, 0, 0, 0.06),
+    0 4px 8px rgba(0, 0, 0, 0.03);
+}
+
+@media (max-width: 768px) {
+
+  .sqcc-card {
+    grid-template-columns: 1fr;
+  }
+
+  .sqcc-left {
+    display: none;
+  }
+
+}
+
+
+/* Left */
+
+.sqcc-left {
+  position: relative;
+
+  overflow: hidden;
+
+  min-height: 560px;
+}
+
+.sqcc-left-bg {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 0;
+
+  background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBTIKMS4UJJLEDKbPKGPCauEIQqfC94iIz60dRkjs1VslBG2ihQBl4QENPbVqpgyEq_Dnyyn3Didxtw1qyUIn1nLtFaM2kJ52B8T9sAjy25aY49vO2o0jtBSyC231su9rGdLFPStvT2fkINAW3u5MEQlYAwBWIllMWVbs9l33S0eXf5KR1KYBVRX_k2nZJEG5X3r5OBnU9xBQaJPfVzx_8q_v1e2zc26w1AeZhFE4xGkE_i6tF1kosVJDbyD1GMLfStE6xixvu3BAY');
+
+  background-size: cover;
+  background-position: center;
+
+  transition: transform 1s ease;
+}
+
+.sqcc-left:hover .sqcc-left-bg {
+  transform: scale(1.05);
+}
+
+.sqcc-left-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 1;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(0, 73, 0, 0.92) 0%,
+      rgba(0, 108, 73, 0.65) 100%
+    );
+}
+
+.sqcc-left-content {
+  position: relative;
+
+  z-index: 2;
+
+  height: 100%;
+
+  padding: 48px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: flex-end;
+
+  color: #fff;
+}
+
+.sqcc-badge {
+  display: inline-block;
+
+  width: fit-content;
+
+  padding: 4px 12px;
+
+  border-radius: 9999px;
+
+  background: #705d00;
+
+  color: #fff;
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+  letter-spacing: 0.05em;
+
+  margin-bottom: 16px;
+}
+
+.sqcc-left-title {
+  font-size: 28px;
+
+  line-height: 36px;
+
+  font-weight: 700;
+}
+
+.sqcc-left-desc {
+  font-size: 16px;
+
+  line-height: 24px;
+
+  color: rgba(255, 255, 255, 0.88);
+
+  margin-top: 12px;
+}
+
+.sqcc-left-footer {
+  display: flex;
+
+  align-items: center;
+
+  gap: 16px;
+
+  margin-top: 32px;
+
+  padding-top: 32px;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.sqcc-avatars {
+  display: flex;
+}
+
+.sqcc-avatar {
+  width: 32px;
+
+  height: 32px;
+
+  border-radius: 9999px;
+
+  border: 2px solid #fff;
+
+  background: #fff;
+
+  margin-left: -8px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  color: #004900;
+
+  font-size: 20px;
+}
+
+.sqcc-avatar:first-child {
+  margin-left: 0;
+}
+
+.sqcc-left-stat {
+  font-size: 12px;
+
+  color: rgba(255, 255, 255, 0.78);
+}
+
+
+/* Right */
+
+.sqcc-right {
+  padding: 40px 56px;
+
+  background: #fff;
+}
+
+@media (max-width: 900px) {
+
+  .sqcc-right {
+    padding: 32px 24px;
+  }
+
+}
+
+
+/* Form */
+
+.sqcc-form-title {
+  font-size: 20px;
+
+  font-weight: 600;
+
+  color: #111c2d;
+
+  margin-bottom: 4px;
+}
+
+.sqcc-form-sub {
+  font-size: 16px;
+
+  color: #404a3b;
+
+  margin-bottom: 28px;
+}
+
+.sqcc-field {
+  margin-bottom: 16px;
+}
+
+.sqcc-field-header {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  margin-bottom: 6px;
+}
+
+.sqcc-label {
+  font-size: 14px;
+
+  font-weight: 600;
+
+  letter-spacing: 0.03em;
+
+  color: #404a3b;
+}
+
+.optional-text {
+  font-size: 11px;
+
+  font-weight: 400;
+
+  color: #707a6a;
+}
+
+
+/* Inputs */
+
+.sqcc-input-wrap {
+  position: relative;
+}
+
+.sqcc-input-icon {
+  position: absolute;
+
+  left: 12px;
+
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  color: #707a6a;
+
+  font-size: 20px;
+
+  display: flex;
+
+  align-items: center;
+
+  pointer-events: none;
+}
+
+.sqcc-input {
+  width: 100%;
+
+  padding: 12px 16px 12px 40px;
+
+  border-radius: 8px;
+
+  border: 1px solid #bfcab7;
+
+  font-size: 16px;
+
+  font-family: 'Public Sans', sans-serif;
+
+  background: #fff;
+
+  color: #111c2d;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+.sqcc-input:focus {
+  border-color: #004900;
+
+  box-shadow:
+    0 0 0 3px rgba(0, 73, 0, 0.1);
+}
+
+.sqcc-input::placeholder {
+  color: #9ca3af;
+}
+
+.sqcc-input-pw {
+  padding-right: 44px;
+}
+
+
+/* Password eye */
+
+.sqcc-eye-btn {
+  position: absolute;
+
+  right: 12px;
+
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  background: none;
+
+  border: none;
+
+  cursor: pointer;
+
+  color: #707a6a;
+
+  font-size: 20px;
+
+  display: flex;
+
+  align-items: center;
+}
+
+.sqcc-eye-btn:hover {
+  color: #004900;
+}
+
+
+/* Terms */
+
+.sqcc-check-row {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  margin-bottom: 20px;
+}
+
+.sqcc-checkbox {
+  width: 16px;
+
+  height: 16px;
+
+  accent-color: #004900;
+
+  cursor: pointer;
+}
+
+.sqcc-check-label {
+  font-size: 12px;
+
+  color: #404a3b;
+
+  cursor: pointer;
+}
+
+
+/* Submit */
+
+.sqcc-submit {
+  width: 100%;
+
+  padding: 14px;
+
+  border-radius: 8px;
+
+  border: none;
+
+  background: #004900;
+
+  color: #fff;
+
+  font-size: 18px;
+
+  font-weight: 700;
+
+  font-family: 'Public Sans', sans-serif;
+
+  cursor: pointer;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 8px;
+
+  box-shadow:
+    0 4px 12px rgba(0, 73, 0, 0.3);
+
+  transition:
+    background 0.25s,
+    transform 0.1s;
+}
+
+.sqcc-submit:hover {
+  background: #006c49;
+}
+
+.sqcc-submit:active {
+  transform: scale(0.98);
+}
+
+.sqcc-submit:disabled {
+  opacity: 0.65;
+
+  cursor: not-allowed;
+}
+
+
+/* Messages */
+
+.register-error {
+  color: #dc2626;
+
+  font-size: 13px;
+
+  margin-bottom: 12px;
+
+  padding: 10px;
+
+  border-radius: 6px;
+
+  background: #fef2f2;
+
+  border: 1px solid #fecaca;
+}
+
+.register-success {
+  color: #166534;
+
+  font-size: 13px;
+
+  margin-bottom: 12px;
+
+  padding: 10px;
+
+  border-radius: 6px;
+
+  background: #f0fdf4;
+
+  border: 1px solid #bbf7d0;
+}
+
+
+/* Login link */
+
+.sqcc-register {
+  margin-top: 24px;
+
+  text-align: center;
+
+  font-size: 12px;
+
+  color: #404a3b;
+}
+
+.register-login-link {
+  border: none;
+
+  background: transparent;
+
+  color: #004900;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  font-family: 'Public Sans', sans-serif;
+}
+
+.register-login-link:hover {
+  text-decoration: underline;
+}
+
+
+/* Footer */
+
+.sqcc-footer {
+  margin-top: 32px;
+
+  width: 100%;
+
+  max-width: 900px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 12px;
+
+  align-items: center;
+
+  opacity: 0.7;
+
+  padding: 0 16px;
+}
+
+@media (min-width: 640px) {
+
+  .sqcc-footer {
+    flex-direction: row;
+
+    justify-content: space-between;
+  }
+
+}
+
+.sqcc-footer-brand {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  font-size: 12px;
+}
+
+.icon-verified {
+  color: #004900;
+
+  font-size: 18px;
+}
+
+.sqcc-footer-links {
+  display: flex;
+
+  gap: 24px;
+}
+
+.sqcc-footer-links a {
+  font-size: 12px;
+
+  color: #111c2d;
+
+  text-decoration: none;
+}
+
+.sqcc-footer-links a:hover {
+  color: #004900;
+}
+
