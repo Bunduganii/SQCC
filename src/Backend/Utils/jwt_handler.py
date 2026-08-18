@@ -10,7 +10,7 @@ def create_token(user_id, role):
     payload = {
         "id": user_id,
         "rolee": role,
-        "created_at": datetime.now(timezone.utc) + timedelta(hours=24)
+        "exp": datetime.now(timezone.utc) + timedelta(hours=24)
     }
 
     token = jwt.encode(

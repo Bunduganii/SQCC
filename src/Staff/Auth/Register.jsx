@@ -14,7 +14,7 @@ const Register = () => {
   const [registerData, setRegisterData] = useState({
     full_name: "",
     email: "",
-    government_id: "",
+    goverment_id: "",
     password: "",
     confirm_password: "",
   });
@@ -83,7 +83,7 @@ const Register = () => {
       setSuccess("Account created successfully!");
 
       setTimeout(() => {
-        navigate("/login");
+        navigate("/");
       }, 1500);
 
     } catch (err) {
@@ -244,7 +244,7 @@ const Register = () => {
               <div className="sqcc-field-header">
 
                 <label className="sqcc-label">
-                  Government ID
+                  National ID Card
                   <span className="optional-text">
                     {" "} (Optional)
                   </span>
@@ -262,7 +262,7 @@ const Register = () => {
                   className="sqcc-input"
                   type="text"
                   name="government_id"
-                  placeholder="Enter your government ID"
+                  placeholder="Enter your National ID Card"
                   value={registerData.government_id}
                   onChange={handleChange}
                 />

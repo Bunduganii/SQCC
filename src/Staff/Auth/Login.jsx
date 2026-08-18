@@ -52,8 +52,11 @@ const handleLogin = async (e) => {
     // Redirect based on role
     if (data.user.rolee === "staff") {
       navigate("/Staff-dash");
+    } 
+    else if (data.user.rolee === "importer"){
+    navigate("/Importer")
     } else {
-      window.location.href = "/Citezens";
+      navigate ("/Citezens");
     }
 
   } catch (err) {
@@ -182,11 +185,19 @@ const handleLogin = async (e) => {
             <div className="sqcc-input-wrap">
               <span className="sqcc-input-icon"><MdLock /></span>
               <input
+  className="sqcc-input sqcc-input-pw"
+  type={showPassword ? "text" : "password"}
+  placeholder="••••••••"
+  value={loginData.password}
+  onChange={(e)=>setLoginData({...loginData, password:e.target.value})}
+/>
+              {/* error in password inpuy */}
+              {/* <input
                 className="sqcc-input sqcc-input-pw"
                 type={showPassword ? "text" : "password"}
                 placeholder="••••••••"
-                  value={loginData.identifier}
-               onChange={(e)=>setLoginData({...loginData,identifier:e.target.value})}/>
+                  value={loginData.password}
+               onChange={(e)=>setLoginData({...loginData,identifier:e.target.value})}/> */}
               <button
                 className="sqcc-eye-btn"
                 type="button"
@@ -256,7 +267,7 @@ const handleLogin = async (e) => {
         </div>
       </footer>
 
-    </div>
+    </div >
   );
 };
 

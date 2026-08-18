@@ -10,6 +10,10 @@ from Database import db
 from argon2 import PasswordHasher
 from Model.Users import User
 from Routes.Register import register_bp
+from Model.Company import Company
+from Routes.Company import company_bp
+from Model.Shipment import Shipment
+from Routes.Shipment import shipment_bp
 load_dotenv()
 print(os.getenv("DATABASE_URL"))
 app = Flask(__name__)
@@ -25,6 +29,10 @@ ph = PasswordHasher()
 
 # Register blueprint AFTER creating the app app.register_blueprint(auth_bp, url_prefix="/api")
 app.register_blueprint(auth_bp,url_prefix="/api")
+app.register_blueprint(company_bp)
+app.register_blueprint(shipment_bp)
+
+
 
 # Testing the connection of the datbase 
 @app.route("/")

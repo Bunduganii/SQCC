@@ -22,8 +22,8 @@ def register():
             }), 400
 
         full_name = data.get("full_name", "").strip()
-        email = data.get("email", "").strip().lower()
-        goverment_id = data.get("goverment_id", "").strip()
+        email = (data.get("email")or "").strip().lower() or None
+        goverment_id =(data.get("goverment_id")or "").strip().lower() or None
         password = data.get("password", "")
 
         # -------------------------
@@ -39,19 +39,19 @@ def register():
         # Validate email
         # -------------------------
 
-        if not email:
+        if not email and not goverment_id:
             return jsonify({
-                "error": "Email is required"
+                "error": "Email gali am card ka aqoonsiga numberkisa"
             }), 400
 
         # -------------------------
         # Validate government ID
         # -------------------------
 
-        if not goverment_id:
-            return jsonify({
-                "error": "Government ID is required"
-            }), 400
+        # if not goverment_id:
+        #     return jsonify({
+        #         "error": "Government ID is required"
+        #     }), 400
 
         # -------------------------
         # Validate password
