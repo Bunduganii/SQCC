@@ -84,3 +84,24 @@ def verify_shipment(shipment_id):
         "message": f"Shipment {decision} successfully",
         "certificate_number": shipment.certificate_number
     }), 200
+@shipment_bp.route("/api/shipment/mine",methods=["GET"])
+@token_required
+def get_shipment():
+    if request.user_role != "importer":
+        return jsonify({"error":"only importer can view their shipment"}),403
+    company = Company.query.filter_by(owner_user_id=request.user_id).first()
+    if not company:
+        return jsonify([]),200
+    shipments = Shipment.query.filter_by(company_id=company.id).all()
+    resullt = []
+    for s in shipments:
+        resullt.append({
+            "id":s.id,
+            "product_name":s.product_name,
+            "product_category":s.product_category,
+            "quantity":s.quantity,
+            "status":s.status,
+            "certificate_number":s.certificate_number,
+            "submitted_at":s.submitted_at
+        })
+        return jsonify(resullt),200

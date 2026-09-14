@@ -1,0 +1,620 @@
+/* =========================
+   PAGE
+========================= */
+
+.shipment-page {
+  min-height: 100vh;
+  background: #f8f8fc;
+  color: #171a24;
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
+.top-navbar {
+  height: 70px;
+  background: #ffffff;
+  border-bottom: 1px solid #e8e8ec;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 52px;
+}
+
+
+.portal-logo img {
+    width: 72px;
+    height: 72px;
+  color: #075c20;
+  font-size: 29px;
+  font-weight: 700;
+
+  white-space: nowrap;
+}
+
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 38px;
+
+  margin-left: 45px;
+}
+
+
+.navbar-links a {
+  color: #35363d;
+  text-decoration: none;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  height: 70px;
+
+  display: flex;
+  align-items: center;
+
+  position: relative;
+}
+
+
+.navbar-links a.active {
+  color: #1f3828;
+}
+
+
+.navbar-links a.active::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: 15px;
+
+  height: 2px;
+
+  background: #075c20;
+}
+
+
+.navbar-actions {
+  margin-left: auto;
+
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+
+.new-submission-btn {
+  border: none;
+  background: #075c20;
+  color: white;
+
+  padding: 12px 20px;
+
+  border-radius: 8px;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+
+.new-submission-btn:hover {
+  background: #064d1b;
+}
+
+
+.icon-btn {
+  border: none;
+  background: transparent;
+
+  font-size: 21px;
+
+  color: #333;
+
+  cursor: pointer;
+}
+
+
+.profile-circle {
+  width: 34px;
+  height: 34px;
+
+  border-radius: 50%;
+
+  background: #e8e8e8;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 600;
+}
+
+
+/* =========================
+   MAIN CONTAINER
+========================= */
+
+.shipment-container {
+  width: min(960px, calc(100% - 40px));
+
+  margin: 50px auto 100px;
+}
+
+
+.shipment-header {
+  margin-bottom: 42px;
+}
+
+
+.shipment-header h1 {
+  margin: 0 0 8px;
+
+  font-size: 34px;
+  line-height: 1.2;
+
+  font-weight: 700;
+}
+
+
+.shipment-header p {
+  margin: 0;
+
+  color: #55565d;
+
+  font-size: 16px;
+}
+
+
+/* =========================
+   STEPS
+========================= */
+
+.steps-container {
+  width: 100%;
+
+  display: flex;
+  align-items: flex-start;
+
+  margin-bottom: 22px;
+}
+
+
+.step-item {
+  min-width: 100px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  position: relative;
+
+  z-index: 2;
+}
+
+
+.step-circle {
+  width: 36px;
+  height: 36px;
+
+  border-radius: 50%;
+
+  background: #dbe5f8;
+
+  color: #253347;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 15px;
+  font-weight: 600;
+}
+
+
+.active-step .step-circle {
+  background: #075c20;
+  color: white;
+
+  border: 4px solid white;
+
+  outline: 2px solid #b8d0bd;
+}
+
+
+.step-item span {
+  margin-top: 15px;
+
+  color: #44483f;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+
+.step-line {
+  height: 2px;
+
+  background: #d9e1f3;
+
+  flex: 1;
+
+  margin-top: 18px;
+}
+
+
+/* =========================
+   FORM CARD
+========================= */
+
+.shipment-card {
+  background: white;
+
+  border: 1px solid #d6d8d2;
+
+  border-radius: 13px;
+
+  overflow: hidden;
+
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.04);
+}
+
+
+.card-content {
+  padding: 35px 35px 32px;
+}
+
+
+.card-content h2 {
+  margin: 0;
+
+  font-size: 21px;
+
+  font-weight: 700;
+}
+
+
+.divider {
+  height: 1px;
+
+  background: #e6e6e2;
+
+  margin: 20px 0 25px;
+}
+
+
+/* =========================
+   FORM GRID
+========================= */
+
+.form-grid {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 24px;
+
+  margin-bottom: 24px;
+}
+
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.form-group label {
+  margin-bottom: 9px;
+
+  font-size: 13px;
+
+  color: #373a37;
+
+  font-weight: 500;
+}
+
+
+.form-group label span {
+  color: #222;
+}
+
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  border: 1px solid #cfd0cb;
+
+  background: #fafafd;
+
+  border-radius: 8px;
+
+  font-family: inherit;
+
+  font-size: 16px;
+
+  color: #272a30;
+
+  outline: none;
+
+  transition: 0.2s ease;
+}
+
+
+.form-group input,
+.form-group select {
+  height: 54px;
+
+  padding: 0 17px;
+}
+
+
+.form-group textarea {
+  height: 106px;
+
+  padding: 16px 17px;
+
+  resize: vertical;
+}
+
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #858883;
+}
+
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #075c20;
+
+  box-shadow: 0 0 0 3px rgba(7, 92, 32, 0.08);
+
+  background: white;
+}
+
+
+.description-group {
+  margin-top: 2px;
+}
+
+
+/* =========================
+   CARD FOOTER
+========================= */
+
+.card-footer {
+  min-height: 76px;
+
+  background: #f0f3fd;
+
+  border-top: 1px solid #d7d9e1;
+
+  padding: 0 35px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+.cancel-btn {
+  border: none;
+
+  background: transparent;
+
+  color: #343936;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+
+.next-btn {
+  border: none;
+
+  background: #075c20;
+
+  color: white;
+
+  border-radius: 8px;
+
+  height: 40px;
+
+  padding: 0 20px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+
+.next-btn:hover {
+  background: #064d1b;
+}
+
+
+.next-btn span {
+  font-size: 18px;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.site-footer {
+  margin-top: auto;
+
+  min-height: 72px;
+
+  background: white;
+
+  border-top: 1px solid #dededb;
+
+  padding: 0 52px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  font-size: 12px;
+}
+
+
+.site-footer strong {
+  letter-spacing: 0.3px;
+}
+
+
+.footer-links {
+  display: flex;
+  gap: 25px;
+}
+
+
+.footer-links a {
+  color: #3d3f3c;
+
+  text-decoration: none;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+
+  .top-navbar {
+    padding: 0 25px;
+  }
+
+  .portal-logo {
+    font-size: 23px;
+  }
+
+  .navbar-links {
+    gap: 20px;
+    margin-left: 25px;
+  }
+
+  .navbar-actions {
+    gap: 12px;
+  }
+
+  .shipment-container {
+    width: calc(100% - 30px);
+  }
+}
+
+
+@media (max-width: 700px) {
+
+  .top-navbar {
+    height: auto;
+
+    padding: 18px;
+
+    flex-wrap: wrap;
+
+    gap: 15px;
+  }
+
+  .navbar-links {
+    order: 3;
+
+    width: 100%;
+
+    justify-content: space-between;
+
+    margin-left: 0;
+  }
+
+  .navbar-links a {
+    height: 40px;
+  }
+
+  .navbar-links a.active::after {
+    bottom: 0;
+  }
+
+  .navbar-actions {
+    margin-left: auto;
+  }
+
+  .new-submission-btn {
+    display: none;
+  }
+
+
+  .shipment-container {
+    margin-top: 30px;
+  }
+
+
+  .shipment-header h1 {
+    font-size: 28px;
+  }
+
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+
+  .steps-container {
+    overflow-x: auto;
+  }
+
+
+  .step-item span {
+    font-size: 12px;
+  }
+
+
+  .card-content {
+    padding: 25px 20px;
+  }
+
+
+  .card-footer {
+    padding: 0 20px;
+  }
+
+
+  .site-footer {
+    padding: 20px;
+
+    flex-direction: column;
+
+    gap: 15px;
+
+    text-align: center;
+  }
+
+}
