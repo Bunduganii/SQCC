@@ -26,7 +26,7 @@ const Importer = () => {
       navigate("/")
       return
     }
-    navigate("/Importer-menu")
+    navigate("/Impt-dash")
     setUser(data)
     setLoading(false)
   })

@@ -146,8 +146,9 @@
 ========================= */
 
 .shipment-container {
-  width: min(960px, calc(100% - 40px));
-
+  /* width: min(960px, calc(100% - 40px));  this was causing an error making shipment below*/
+   width: calc(100% - 40px);
+   max-width: 1400px;
   margin: 50px auto 100px;
 }
 
@@ -617,4 +618,64 @@
     text-align: center;
   }
 
+}
+/* =========================
+   ADD THIS TO THE BOTTOM OF shipment.css
+   (new styles needed for steps 2, 3, 4)
+========================= */
+
+/* Step indicator: completed step shows green checkmark circle */
+.done-step .step-circle {
+  background: #075c20;
+  color: white;
+}
+
+.done-step span {
+  color: #075c20;
+}
+
+/* Helper text shown before a category is picked in Step 2 */
+.helper-text {
+  color: #7a7d76;
+  font-size: 14px;
+  margin: 10px 0 0;
+}
+
+/* File input styling (Step 3) */
+.form-group input[type="file"] {
+  height: auto;
+  padding: 14px 17px;
+  cursor: pointer;
+}
+
+/* Review summary blocks (Step 4) */
+.review-section {
+  margin-bottom: 26px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e6e6e2;
+}
+
+.review-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.review-section h3 {
+  margin: 0 0 12px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #075c20;
+}
+
+.review-section p {
+  margin: 0 0 8px;
+  font-size: 15px;
+  color: #373a37;
+}
+
+.review-section p strong {
+  color: #171a24;
+  font-weight: 600;
+  margin-right: 6px;
 }

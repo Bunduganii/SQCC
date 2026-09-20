@@ -6,7 +6,7 @@
   padding: 24px 16px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  /* justify-content: space-between;  this one was causing alot space in sidebar*/
   min-height: 100vh;
 }
 

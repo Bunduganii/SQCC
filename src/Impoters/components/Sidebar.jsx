@@ -7,16 +7,18 @@ import "./sidebar.css"
 import { useEffect } from "react"
 import { useState } from "react"
  const navItems = [
-    {to:"/importer-dashboard", label:"DashBoard",icon:LuLayoutDashboard,end:true},
+    {to:"/impt-dash", label:"DashBoard",icon:LuLayoutDashboard,end:true},
     {to:"/shipment", label:"Shipment",icon:GiCargoShip,end:true},
     {to:"/drafts", label:"Drafts",icon:LuFileInput,end:true},
     {to:"/Approved-shipment", label:"Approved-Shipment",icon:FcApproval,end:true},
     {to:"/support", label:"Help",icon:BiSupport,end:true},
    
     ]
+
 const Sidebar = () => {
    const [user,setUser] = useState(null)
    const [loading,setLoading] = useState(true)
+    const [shipments,setShipments] = useState([])
    const navigate = useNavigate()
    const handlelogout = () => {
       localStorage.removeItem("token");
@@ -48,6 +50,9 @@ const Sidebar = () => {
          navigate("/")
       })
    },[])
+
+ 
+
    if(loading) return <p>Loading...</p>
   return (
    <>
