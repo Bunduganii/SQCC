@@ -26,7 +26,14 @@ def submit_shipment ():
         company_id = company.id,
         product_name = product_name,
         product_category = product_category,
-        quantity = quantity
+        quantity = quantity,
+        port_of_entry = data.get("port_of_entry"),
+        arrival_date = data.get("arrival_date"),
+        carrier_info = data.get("carrier_info"),
+        weight= data.get("weight"),
+        description = data.get("description"),
+        expiry_date = data.get("expiry_date"),
+        ingredient_list = data.get("ingredient_list")
     )
     db.session.add(new_shipment)
     db.session.commit()
@@ -50,7 +57,8 @@ def get_pending_shipments():
             "product_name": s.product_name,
             "product_category": s.product_category,
             "quantity": s.quantity,
-            "submitted_at": s.submitted_at
+            "submitted_at": s.submitted_at,
+            
         })
 
     return jsonify(result), 200
@@ -102,6 +110,11 @@ def get_shipment():
             "quantity":s.quantity,
             "status":s.status,
             "certificate_number":s.certificate_number,
-            "submitted_at":s.submitted_at
+            "submitted_at":s.submitted_at,
+            "certificate_number":s.certificate_number,
+            "submitted_at":s.submitted_at,
+            "arrival_date":s.arrival_date,
+          "port_of_entry":s.port_of_entry,
+           "description":s.description
         })
-        return jsonify(resullt),200
+    return jsonify(resullt),200

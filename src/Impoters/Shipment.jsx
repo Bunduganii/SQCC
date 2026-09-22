@@ -4,6 +4,7 @@ import { RiNotification3Fill } from "react-icons/ri";
 import { GiCancel, GiHelp } from "react-icons/gi";
 import { FcNext } from "react-icons/fc";
 import toast from "react-hot-toast";
+import { useEffect } from "react";
 
 // ---- Category-specific field definitions ----
 // Each entry = { name, label, type, placeholder }
@@ -38,6 +39,7 @@ const STEP_LABELS = ["Shipment Info", "Product Details", "Document Upload", "Rev
 
 function Shipment() {
   const [step, setStep] = useState(1);
+  const [user,setUser] = useState()
 
   const [formData, setFormData] = useState({
     // Step 1
@@ -117,6 +119,13 @@ function Shipment() {
         product_name: formData.productName,
         product_category: formData.category,
         quantity: formData.quantity,
+        port_of_entry: formData.portOfEntry,
+        arrival_date: formData.arrivalDate,
+        carrier_info: formData.carrierName ,
+        weight : formData.weight,
+        description : formData.description,
+        expiry_date : formData.categoryFields.expiryDate|| null,
+        ingredient_list : formData.categoryFields.ingredientList || null
       }),
     });
 
@@ -137,6 +146,19 @@ function Shipment() {
 
   const activeFields = CATEGORY_FIELDS[formData.category] || [];
   const categoryDocLabel = CATEGORY_DOC_LABEL[formData.category] || "Category Document";
+  useEffect(()=>{
+   const token = localStorage.getItem("token")
+   fetch("http://localhost:5000/api/me",
+    {
+    headers:{
+      Authorization:`Bearer ${token}`
+    }
+   })
+   .then((res)=>res.json())
+   .then((data)=>{
+    setUser(data)
+   })
+  },[])
 
   return (
     <div className="shipment-page">
@@ -156,7 +178,7 @@ function Shipment() {
           <button className="new-submission-btn">New Submission</button>
           <button className="icon-btn"><RiNotification3Fill size={18} /></button>
           <button className="icon-btn"><GiHelp size={18} /></button>
-          <div className="profile-circle">A</div>
+          <div className="profile-circle">{user?.full_name?.[0]}</div>
         </div>
       </header>
 

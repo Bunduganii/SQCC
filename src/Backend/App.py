@@ -14,9 +14,12 @@ from Model.Company import Company
 from Routes.Company import company_bp
 from Model.Shipment import Shipment
 from Routes.Shipment import shipment_bp
+from flask_migrate import Migrate
+
 load_dotenv()
 print(os.getenv("DATABASE_URL"))
 app = Flask(__name__)
+migrate = Migrate(app,db)
 
 CORS(app)
 
