@@ -3,6 +3,11 @@ from Database import db
 from Model.Shipment import Shipment
 from Model.Company import Company
 from Utils.auth_required import token_required
+import os
+from werkzeug.utils import secure_filename
+from Model.Document import Document
+UPLOAD_FOLDER = "uploads/documents"
+os.makedirs(UPLOAD_FOLDER,exist_ok=True)
 
 shipment_bp = Blueprint("shipment_bp",__name__)
 
@@ -38,6 +43,43 @@ def submit_shipment ():
     db.session.add(new_shipment)
     db.session.commit()
     return jsonify({"massege":"You Successfuly Submitted Shipmet, pending review"}),201
+
+@shipment_bp.route("/api/shipment/<int:shipment_id>/documents", methods=["POST"])
+@token_required
+def upload_document(shipment_id):
+    if request.user_role != "importer":
+        return jsonify({"error": "Only importers can upload documents"}), 403
+
+    shipment = Shipment.query.get_or_404(shipment_id)
+
+    company = Company.query.filter_by(owner_user_id=request.user_id).first()
+    if not company or shipment.company_id != company.id:
+        return jsonify({"error": "Not authorized for this shipment"}), 403
+
+    if "file" not in request.files:
+        return jsonify({"error": "No file uploaded"}), 400
+
+    file = request.files["file"]
+    if file.filename == "":
+        return jsonify({"error": "No file selected"}), 400
+
+    filename = secure_filename(file.filename)
+    file_path = os.path.join(UPLOAD_FOLDER, filename)
+    file.save(file_path)
+
+    new_doc = Document(
+        shipment_id=shipment.id,
+        file_name=filename,
+        file_path=file_path,
+        document_type=request.form.get("document_type", "other")
+    )
+    db.session.add(new_doc)
+    db.session.commit()
+
+    return jsonify({
+        "message": "Document uploaded successfully",
+        "document_id": new_doc.id
+    }), 201
 
 
 
