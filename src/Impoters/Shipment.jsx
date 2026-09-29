@@ -103,12 +103,13 @@ function Shipment() {
     if (step > 1) setStep(step - 1);
   };
 
- const handleSubmit = async (e) => {
+const handleSubmit = async (e) => {
   e.preventDefault();
 
-  const token = localStorage.getItem("token"); // wherever you store it after login
+  const token = localStorage.getItem("token");
 
   try {
+    // Step 1: create the shipment
     const response = await fetch("http://localhost:5000/api/shipment/submit", {
       method: "POST",
       headers: {
@@ -121,28 +122,100 @@ function Shipment() {
         quantity: formData.quantity,
         port_of_entry: formData.portOfEntry,
         arrival_date: formData.arrivalDate,
-        carrier_info: formData.carrierName ,
-        weight : formData.weight,
-        description : formData.description,
-        expiry_date : formData.categoryFields.expiryDate|| null,
-        ingredient_list : formData.categoryFields.ingredientList || null
+        carrier_info: formData.carrierName,
+        weight: formData.weight,
+        description: formData.description,
+        expiry_date: formData.categoryFields.expiryDate || null,
+        ingredient_list: formData.categoryFields.ingredientList || null
       }),
     });
 
     const result = await response.json();
+    console.log("submit response:",result)
 
     if (!response.ok) {
-      alert(result.error || "Submission failed");
+      toast.error(result.error || "Submission failed");
       return;
     }
 
-    alert(result.massege || "Shipment submitted!");
+    const shipmentId = result.shipment_id;
+
+    // Step 2: upload each selected document, tied to that shipment
+    const docEntries = Object.entries(formData.documents).filter(
+      ([, file]) => file !== null
+    );
+
+    for (const [docKey, file] of docEntries) {
+      const docForm = new FormData();
+      docForm.append("file", file);
+      docForm.append("document_type", docKey);
+
+      const docResponse = await fetch(
+        `http://localhost:5000/api/shipment/${shipmentId}/documents`,
+        {
+          method: "POST",
+          headers: {
+            "Authorization": `Bearer ${token}`,
+          },
+          body: docForm,
+        }
+      );
+
+      if (!docResponse.ok) {
+        const docResult = await docResponse.json();
+        toast.error(`Failed to upload ${docKey}: ${docResult.error || "unknown error"}`);
+        return;
+      }
+    }
+
+    toast.success(result.message || "Shipment submitted successfully!");
 
   } catch (err) {
     console.error("Error submitting shipment:", err);
     toast.error("Something went wrong submitting the shipment.");
   }
 };
+  //  const handleSubmit = async (e) => {
+//   e.preventDefault();
+
+//   const token = localStorage.getItem("token"); // wherever you store it after login
+
+//   try {
+//     const response = await fetch("http://localhost:5000/api/shipment/submit", {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//         "Authorization": `Bearer ${token}`,
+//       },
+//       body: JSON.stringify({
+//         product_name: formData.productName,
+//         product_category: formData.category,
+//         quantity: formData.quantity,
+//         port_of_entry: formData.portOfEntry,
+//         arrival_date: formData.arrivalDate,
+//         carrier_info: formData.carrierName ,
+//         weight : formData.weight,
+//         description : formData.description,
+//         expiry_date : formData.categoryFields.expiryDate|| null,
+//         ingredient_list : formData.categoryFields.ingredientList || null
+//       }),
+//     });
+
+//     const result = await response.json();
+
+//     if (!response.ok) {
+//       toast.error(result.error || "Submission failed");
+//       return;
+//     }
+//     const shipmentId = result.shipment_id;
+
+//     toast.success(result.massege || "Shipment submitted!");
+
+//   } catch (err) {
+//     console.error("Error submitting shipment:", err);
+//     toast.error("Something went wrong submitting the shipment.");
+//   }
+// };
 
   const activeFields = CATEGORY_FIELDS[formData.category] || [];
   const categoryDocLabel = CATEGORY_DOC_LABEL[formData.category] || "Category Document";

@@ -40,9 +40,10 @@ def submit_shipment ():
         expiry_date = data.get("expiry_date"),
         ingredient_list = data.get("ingredient_list")
     )
-    db.session.add(new_shipment)
+    db.session.add(new_shipment) 
     db.session.commit()
-    return jsonify({"massege":"You Successfuly Submitted Shipmet, pending review"}),201
+    return jsonify({"massege":"You Successfuly Submitted Shipmet, pending review"
+                    ,"shipment_id":new_shipment.id}),201
 
 @shipment_bp.route("/api/shipment/<int:shipment_id>/documents", methods=["POST"])
 @token_required
@@ -80,6 +81,31 @@ def upload_document(shipment_id):
         "message": "Document uploaded successfully",
         "document_id": new_doc.id
     }), 201
+
+@shipment_bp.route("/api/shipment/<int:shipment_id>/documents",methods=['GET'])
+@token_required
+def get_documents (shipment_id):
+    shipment = Shipment.query.get_or_404(shipment_id)
+    if request.user_role == "importer":
+        company = Company.query.filter_by(owner_user_id=request.user_id).first()
+        if not company or shipment.company_id != company.id:
+            return jsonify({"error":"not Authrozied for this shipment"}),403
+    elif request.user_role == "citizen":
+        return jsonify ({"error":"laguuma ogla muwaadin ma tihid shaqaale"}),403
+    documents = Document.query.filter_by(shipment_id=shipment.id).all()
+
+    return jsonify({
+        "shipment_id":shipment.id,
+        "documents":[
+            {
+                "id":doc.id,
+                "file_name": doc.file_name,
+                "document_type": doc.document_type,
+                "uploaded_at": doc.uploaded_at
+            }
+            for doc in documents
+        ]
+    }),200
 
 
 
