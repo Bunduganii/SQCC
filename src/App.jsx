@@ -10,6 +10,7 @@ import Shipment from "./Impoters/Shipment"
 import Imptdash from "./Impoters/imptdash"
 import Layout from "./Impoters/Layout"
 import { Toaster } from "react-hot-toast"
+import MyShipment from "./Impoters/components/MyShipment"
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
     <Route path="/Staff-dash" element={<StaffPage/>}/>
     <Route path="/Citezens" element={<Citezen/>}/>
     <Route path="/Importer" element={<Importer/>}/>
+    <Route path="/Shipments/:id" element={<MyShipment/>}/>
     {/* <Route path="/Importer-menu" element={<Sidebar/>}/> */}
     
     <Route element={<Layout/>}>

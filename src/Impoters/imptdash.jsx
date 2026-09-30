@@ -8,7 +8,8 @@ import {
     LuClock,
     LuTriangleAlert,
     LuCircleCheck,
-    LuHistory
+    LuHistory,
+    LuEye
 } from "react-icons/lu"
 
 
@@ -350,13 +351,7 @@ const Imptdash = () => {
                             </h2>
 
 
-                            <button
-                                onClick={() =>
-                                    navigate("/shipment")
-                                }
-                            >
-                                View All →
-                            </button>
+                            
 
                         </div>
 
@@ -452,9 +447,10 @@ const Imptdash = () => {
                                             <span>
 
                                                 <button
-                                                    className="more-button"
-                                                >
-                                                    ⋮
+                                                    className="more-button" 
+                                                onClick={()=>navigate(`/Shipments/${shipment.rawId}`)}>
+                                                    <LuEye size={17}/>
+                                                    View
                                                 </button>
 
                                             </span>
